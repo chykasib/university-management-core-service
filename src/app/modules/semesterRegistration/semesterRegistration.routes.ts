@@ -1,6 +1,4 @@
 import express from 'express';
-import { ENUM_USER_ROLE } from '../../../enums/user';
-import auth from '../../middlewares/middleware';
 import { SemesterRegistrationController } from './semesterRegistration.controller';
 
 const router = express.Router();
@@ -9,7 +7,7 @@ router.get('/', SemesterRegistrationController.getAllFromDB);
 router.get('/:id', SemesterRegistrationController.getByIdFromDB);
 router.post(
   '/start-registration',
-  auth(ENUM_USER_ROLE.STUDENT),
+  // auth(ENUM_USER_ROLE.STUDENT),
   SemesterRegistrationController.startMyRegistration
 );
 
