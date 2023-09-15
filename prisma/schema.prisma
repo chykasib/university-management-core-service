@@ -349,14 +349,15 @@ enum WeekDays {
   THURSDAY
   FRIDAY
 }
-enum ExamType {
-  MIDTERM
-  FINAL
-}
 enum StudentEnrolledCourseStatus {
   ONGOING
   COMPLETED
   WITHDRAWN
+}
+
+enum ExamType {
+  MIDTERM
+  FINAL
 }
 
 enum PaymentStatus {
