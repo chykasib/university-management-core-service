@@ -289,7 +289,6 @@ const enrollIntoCourse = async (
     payload
   );
 };
-
 const withdrewFromCourse = async (
   authUserId: string,
   payload: IEnrollCoursePayload
@@ -636,7 +635,7 @@ const getMySemesterRegCourses = async (authUserId: string) => {
     },
   });
 
-  console.log('Offered course: ', offeredCourse);
+  // console.log('Offered course: ', offeredCourse);
   const availableCourses = SemesterRegistrationUtils.getAvailableCourses(
     offeredCourse,
     studentCompletedCourse,

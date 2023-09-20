@@ -29,7 +29,6 @@ const getAvailableCourses = (
       const isAlreadyTakenCourse = studentCurrentlyTakanCourses.find(
         (c: any) => c.offeredCourseId === course.id
       );
-
       if (isAlreadyTakenCourse) {
         course.offeredCourseSections.map((section: any) => {
           if (section.id === isAlreadyTakenCourse.offeredCourseSectionId) {
