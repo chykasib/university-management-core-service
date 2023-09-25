@@ -22,7 +22,6 @@ export type IStudentMyCourseSchedulesRequest = {
 
 export type StudentCreatedEvent = {
   id: string;
-  studentId: string;
   name: {
     firstName: string;
     lastName: string;
@@ -47,7 +46,6 @@ export type StudentCreatedEvent = {
 
 export type StudentUpdatedEvent = {
   id: string;
-  studentId: string;
   name: {
     firstName: string;
     lastName: string;

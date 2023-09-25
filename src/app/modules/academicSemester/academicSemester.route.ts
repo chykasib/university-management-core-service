@@ -10,6 +10,7 @@ router.get('/', AcademicSemesterController.getAllFromDB);
 router.get('/:id', AcademicSemesterController.getDataById);
 router.post(
   '/',
+  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
   validateRequest(AcademicSemesterValidation.create),
   AcademicSemesterController.insertIntoDB
 );
