@@ -10,7 +10,7 @@ import {
   AcademicSemesterSearchAbleFields,
   academicSemesterTitleCodeMapper,
 } from './academicSemester.constant';
-import { IAcademicSemesterFilterRequest } from './academicSemester.interface';
+import { IAcademicSemesterCreatedEvent, IAcademicSemesterFilterRequest } from './academicSemester.interface';
 
 const insertIntoDB = async (
   academicSemesterData: AcademicSemester
@@ -132,10 +132,49 @@ const deleteByIdFromDB = async (id: string): Promise<AcademicSemester> => {
   return result;
 };
 
+const createSemesterFromEvent = async (
+  e: IAcademicSemesterCreatedEvent
+): Promise<void> => {
+ const academicSemester:Partial<AcademicSemester> ={
+    title: e.title,
+    year: e.year,
+    code: e.code,
+    startMonth: e.startMonth,
+    endMonth: e.endMonth
+  };
+
+  const data = await prisma.crea(academicSemester as AcademicSemester);
+    console.log("RES: ", data);
+};
+
+const updateOneIntoDBFromEvent = async (
+  e: IAcademicSemesterCreatedEvent
+): Promise<void> => {
+  await AcademicSemester.findOneAndUpdate(
+    { syncId: e.id },
+    {
+      $set: {
+        title: e.title,
+        year: e.year,
+        code: e.code,
+        startMonth: e.startMonth,
+        endMonth: e.endMonth,
+      },
+    }
+  );
+};
+
+const deleteOneFromDBFromEvent = async (syncId: string): Promise<void> => {
+  await AcademicSemester.findOneAndDelete({ syncId });
+};
+
 export const AcademicSemesterService = {
   insertIntoDB,
   getAllFromDB,
   getDataById,
   updateOneInDB,
   deleteByIdFromDB,
+  createSemesterFromEvent,
+  updateOneIntoDBFromEvent
+
 };
